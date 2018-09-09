@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import LoginComponent from "./views/login.vue"
 import SecureComponent from "./views/secure.vue"
 import QuizzesIndexComponent from "./views/QuizzesIndex.vue"
+import QuizzesShowComponent from "./views/QuizzesShow.vue"
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
             path: "/quizzes",
             name: "QuizzesIndex",
             component: QuizzesIndexComponent
+        },
+        {
+            path: "/quizzes/:id",
+            name: "QuizzesShow",
+            component: QuizzesShowComponent
         },
     ]
 })

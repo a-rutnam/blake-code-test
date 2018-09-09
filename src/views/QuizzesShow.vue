@@ -1,25 +1,25 @@
 <template>
-    <div id="quiz">
-quiz
-<pre> {{quizzes}}
-{{questions}}
-</pre>
-    </div>
+
+<p>{{getQuiz()}}</p>
+
 </template>
 
 <script>
   import quizzes from '@/assets/quiz_data/quizzes.json'
   import questions from '@/assets/quiz_data/questions.json'
     export default {
-        name: 'QuizzesIndex',
+        name: 'QuizzesShow',
         data() {
             return {
-              quizzes,
-              questions
+              quizzes: quizzes.quizzes,
+              questions,
+              quizId: parseInt(this.$route.params.id),
             }
         },
         methods: {
-
+          getQuiz() {
+            return this.quizzes.find( quiz => quiz.id === this.quizId );
+          }
         }
     }
 </script>

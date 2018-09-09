@@ -3,7 +3,11 @@
 Quizzes
 
 <ul>
-  <li v-for="quiz in quizzes">{{quiz.title}}</li>
+  <li v-for="quiz in quizzes">
+    <router-link :to="{ name: 'QuizzesShow', params: { id: quiz.id }}">
+      {{quiz.title}}
+    </router-link>
+  </li>
 </ul>
 
 

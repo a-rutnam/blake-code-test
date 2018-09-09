@@ -3,11 +3,13 @@
         <div id="nav">
             <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Logout</router-link>
         </div>
-        <router-view @authenticated="setAuthenticated" />
+        <router-view @authenticated="setAuthenticated" ql="questionsLookUp"/>
     </div>
 </template>
 
 <script>
+import questions from '@/assets/quiz_data/questions.json'
+
 const quizData = "https://api.myjson.com/bins/opxdc"
     export default {
         name: 'App',
@@ -20,12 +22,12 @@ const quizData = "https://api.myjson.com/bins/opxdc"
                 }
             }
         },
+        mounted() {
 
-        // mounted() {
         //     if(!this.authenticated) {
         //         this.$router.replace({ name: "login" });
         //     }
-        // },
+        },
         methods: {
             setAuthenticated(status) {
                 this.authenticated = status;

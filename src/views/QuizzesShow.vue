@@ -1,20 +1,34 @@
 <template>
+<div>
+  <p>{{quiz.title}}</p>
 
-<p>{{getQuiz()}}</p>
 
+  <ol>
+<li v-for="qId in quiz.question_ids">
+  {{ questionsLookUp[qId].question }}
+</li>
+
+  </ol>
+</div>
 </template>
 
 <script>
-  import quizzes from '@/assets/quiz_data/quizzes.json'
-  import questions from '@/assets/quiz_data/questions.json'
+  import {quizzes} from '@/assets/quiz_data/quizzes.json'
+  import {questions} from '@/assets/quiz_data/questions.json'
     export default {
         name: 'QuizzesShow',
         data() {
             return {
-              quizzes: quizzes.quizzes,
-              questions,
+              quizzes,
               quizId: parseInt(this.$route.params.id),
+              questionsLookUp: {},
+              quiz: {}
             }
+        },
+        created(){
+          // create a lookup table for questions, keyed by ID
+          questions.forEach(q => this.questionsLookUp[q.id] = q);
+          this.quiz = this.getQuiz();
         },
         methods: {
           getQuiz() {
